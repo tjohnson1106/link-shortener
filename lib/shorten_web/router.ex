@@ -7,5 +7,10 @@ defmodule ShortenWeb.Router do
 
   scope "/api", ShortenWeb do
     pipe_through :api
+    resources "/links", LinkController, except: [:edit]
+  end
+
+  scope "/", ShortenWeb do
+    get "/:id", LinkController, :get_and_redirect
   end
 end
